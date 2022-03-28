@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import {Axios} from "axios";
-import { Button,Menu,Layout,Breadcrumb,Drawer,Row,Col} from 'ant-design-vue';
+import { Button,Menu,Layout,Breadcrumb,Drawer,Row,Col,Affix,Tooltip} from 'ant-design-vue';
 
 import router from "@/router";
 import store from './vuex/store.js';
@@ -16,6 +16,8 @@ app.use(Button);
 app.use(Layout);
 app.use(Row);
 app.use(Col);
+app.use(Affix);
+app.use(Tooltip);
 /*
 * Icon.setTwoToneColor('#eb2f96');
 Icon.getTwoToneColor(); // #eb2f96

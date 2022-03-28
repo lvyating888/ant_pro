@@ -7,7 +7,6 @@
   export default {
     data(){
       return{
-        msg:123132
       }
     },
     methods:{
@@ -17,7 +16,8 @@
       getParentMsg(){
         console.log(this.$parent.msg);
       },
-      getParentFn(){
+      getParentFn(data){
+        console.log(data);
         this.$parent.run()
       },
       sendParent(){

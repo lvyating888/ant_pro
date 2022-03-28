@@ -2,7 +2,6 @@ import { createRouter,createWebHashHistory} from 'vue-router';
 import index from '../view/index.vue';
 import page1 from '../view/page1.vue'
 import page2 from '../view/page2.vue'
-import LeftMenu  from '../components/layouts/leftmenu.vue';
 const routes=[
     {
         path:'/',
@@ -29,6 +28,11 @@ const routes=[
         path: '/404',
         name:'404',
         component:()=>import('../view/404.vue')
+    },
+    {
+        path: '/ces',
+        name:'ces',
+        component:()=>import('../view/ces.vue')
     }
 ];
 
