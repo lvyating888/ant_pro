@@ -12,7 +12,7 @@
           <a-breadcrumb-item>Bill</a-breadcrumb-item>
         </a-breadcrumb>
         <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
-          {{menucolor}}
+          {{userLogin.id}}
           <router-view></router-view>
         </div>
       </a-layout-content>
@@ -27,8 +27,8 @@ import SetDrawer from "@/components/layouts/SetDrawer";
 import LeftMenu from "@/components/layouts/LeftMenu.vue";
 import TopMenu from "@/components/layouts/TopMenu.vue";
 import { defineComponent } from 'vue';
-import storage from "@/components/storage";
 import {mapState} from "vuex";
+import store from "@/vuex/store";
 export default defineComponent({
   components: {
     SetDrawer,
@@ -40,14 +40,27 @@ export default defineComponent({
     };
   },
   methods:{
+    /*api/sys/role/menuList.json 菜单*/
+    login(){
+      this.Axios.$get('/api/adminlogin.json').then(res=>{
+        if(res.data.data){
+          this.$store.commit('userLogin',res.data.user);
+        }else{
+          this.$store.commit('userLogin', {});
+          window.location.href='http://c.mp12345.com';
+        }
+      })
+    }
   },
   mounted() {
+    this.login();
   },
   computed: {//计算属性
       // ...mapState(['count','list']),
       ...mapState({
         menuColor: (state) => state.menuColor,
-        menuStyle: (state) => state.menuStyle
+        menuStyle: (state) => state.menuStyle,
+        userLogin: (state) => state.userLogin
       }),
   },
 

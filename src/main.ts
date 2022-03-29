@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import {Axios} from "axios";
+import axios from "./utils/request";
+
 import { Button,Menu,Layout,Breadcrumb,Drawer,Row,Col,Affix,Tooltip} from 'ant-design-vue';
 
 import router from "@/router";
@@ -8,7 +9,7 @@ import store from './vuex/store.js';
 
 let app=createApp(App);
 //全局绑定属性
-app.config.globalProperties.Axios=Axios;
+app.config.globalProperties.Axios=axios;
 app.use(Menu)
 app.use(Drawer)
 app.use(Breadcrumb)
@@ -26,4 +27,5 @@ Icon.getTwoToneColor(); // #eb2f96
 app.use(router);
 //挂载vuex;
 app.use(store);
+
 app.mount('#app')

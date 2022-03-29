@@ -1,12 +1,13 @@
 import {createStore} from "vuex";
-import storage from "@/components/storage";
+import storage from "@/utils/storage";
 const store = createStore({
     state(){//数据
         return{
             /*count:1,
             msg:'nihao sdad'*/
-            menuColor:storage.get("setmenu") && storage.get("setmenu").menucolor || 'dark',
-            menuStyle:storage.get("setmenu") && storage.get("setmenu").menustyle || 'left'
+            menuColor:storage.get("setmenu") && storage.get("setmenu").menucolor || 'dark', //主题色
+            menuStyle:storage.get("setmenu") && storage.get("setmenu").menustyle || 'left', //导航样式
+            userLogin:storage.get("setuser") || {},//当前用户信息
         }
     },
     mutations:{//方法 异步操作建议放在actions里面
@@ -19,11 +20,23 @@ const store = createStore({
         setMsg(state,msg){
             state.msg=msg;
         }*/
+        userLogin(state,data){
+            state.userLogin = data ;
+            var user=storage.get("setuser") || {};
+            user=data;
+            storage.set("setuser",user);
+        },
         menuColor(state,data){
             state.menuColor = data ;
+            var menuset=storage.get("setmenu") || {};
+            menuset.menucolor=state.menuColor;
+            storage.set("setmenu",menuset);
         },
         menuStyle(state,data){
             state.menuStyle = data ;
+            var menuset=storage.get("setmenu") || {};
+            menuset.menustyle=state.menuStyle;
+            storage.set("setmenu",menuset);
         }
     },
     getters:{//计算属性

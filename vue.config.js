@@ -25,7 +25,11 @@ module.exports = defineConfig({
     port:8888,
     proxy:{
       '/api':{
-        target:'http://cg.mp12345.com',
+        target:'http://x.mp12345.com:8089',
+        changeOrigin:true
+      },
+      '/supply':{
+        target:'http://x.mp12345.com:8089',
         changeOrigin:true
       }
     }

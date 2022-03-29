@@ -1,7 +1,9 @@
 import { createRouter,createWebHashHistory} from 'vue-router';
 import index from '../view/index.vue';
 import page1 from '../view/page1.vue'
-import page2 from '../view/page2.vue'
+import page2 from '../view/page2.vue';
+import {start,done} from "@/utils/nprogress";
+
 const routes=[
     {
         path:'/',
@@ -40,4 +42,12 @@ const router = createRouter({
     history:createWebHashHistory(),
     routes,
 });
+/*路由加载之前*/
+router.beforeEach((to,from,next)=>{
+    start();
+    next();
+})
+router.afterEach((to,from)=>{
+   done();
+})
 export default router;

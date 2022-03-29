@@ -70,7 +70,7 @@
 <script lang="ts">
 import {SettingOutlined,CloseOutlined,CheckOutlined} from '@ant-design/icons-vue';
 import { defineComponent, ref } from 'vue';
-import storage from "@/components/storage";
+import store from '../../vuex/store';
 import {mapState} from 'vuex';
 export default defineComponent({
   data(){
@@ -84,16 +84,10 @@ export default defineComponent({
   },
   methods:{
     SetMenuColfun(data:any){
-      var menuset=storage.get("setmenu") || {};
-      menuset.menucolor=data;
-      storage.set("setmenu",menuset);
-      this.$store.commit('menuColor',data);
+      store.commit('menuColor',data);
     },
     SetMenuStyfun(data:any){
-      var menuset=storage.get("setmenu") || {};
-      menuset.menustyle=data;
-      storage.set("setmenu",menuset);
-      this.$store.commit('menuStyle',data);
+      store.commit('menuStyle',data);
     }
   },
   computed:{//计算属性

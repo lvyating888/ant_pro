@@ -55,7 +55,6 @@
 <script>
 import { PieChartOutlined, DesktopOutlined, UserOutlined, TeamOutlined, FileOutlined } from '@ant-design/icons-vue';
 import { defineComponent, ref } from 'vue';
-import storage from "@/components/storage.js";
 import {mapState} from "vuex";
 export default defineComponent({
   components: {
@@ -143,8 +142,7 @@ export default defineComponent({
     vertical-align: middle;
     font-style: normal;
     display: inline-block;
-    min-height: 45px;
-    height: 100%;
+    height: 25px;
     width: 1px;
     background-color: @primary-color;
     margin: 0 3%;
