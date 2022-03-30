@@ -69,8 +69,7 @@
 </template>
 <script lang="ts">
 import {SettingOutlined,CloseOutlined,CheckOutlined} from '@ant-design/icons-vue';
-import { defineComponent, ref } from 'vue';
-import store from '../../vuex/store';
+import {defineComponent, getCurrentInstance, ref} from 'vue';
 import {mapState} from 'vuex';
 export default defineComponent({
   data(){
@@ -83,12 +82,6 @@ export default defineComponent({
     CheckOutlined
   },
   methods:{
-    SetMenuColfun(data:any){
-      store.commit('menuColor',data);
-    },
-    SetMenuStyfun(data:any){
-      store.commit('menuStyle',data);
-    }
   },
   computed:{//计算属性
     // ...mapState(['count','list']),
@@ -98,6 +91,7 @@ export default defineComponent({
     }),
   },
   setup() {
+    const { proxy } = getCurrentInstance() as any;
     const containerRef = ref();
     const visible = ref<boolean>(false);
 
@@ -111,13 +105,20 @@ export default defineComponent({
     const hideDrawer = () => {
       visible.value = false;
     };
-
+    const SetMenuColfun =(data:any)=>{
+      proxy.$store.commit('menuColor',data);
+    };
+    const SetMenuStyfun=(data:any)=>{
+      proxy.$store.commit('menuStyle',data);
+    }
     return {
       containerRef,
       visible,
       afterVisibleChange,
       showDrawer,
-      hideDrawer
+      hideDrawer,
+      SetMenuColfun,
+      SetMenuStyfun
     };
   },
   mounted() {

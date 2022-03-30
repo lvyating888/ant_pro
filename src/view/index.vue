@@ -28,7 +28,6 @@ import LeftMenu from "@/components/layouts/LeftMenu.vue";
 import TopMenu from "@/components/layouts/TopMenu.vue";
 import { defineComponent } from 'vue';
 import {mapState} from "vuex";
-import store from "@/vuex/store";
 export default defineComponent({
   components: {
     SetDrawer,
@@ -40,9 +39,22 @@ export default defineComponent({
     };
   },
   methods:{
-    /*api/sys/role/menuList.json 菜单*/
+    /* 菜单*/
+    getMenuList(){
+      this.Axios({
+        url: '/api/sys/role/menuList.json',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        method: 'post',
+        data: {
+          compId:this.userLogin.comp_id,
+          uid:this.userLogin.id
+        }
+      }).then(res=>{
+        console.log(res);
+      });
+    },
     login(){
-      this.Axios.$get('/api/adminlogin.json').then(res=>{
+      this.Axios.get('/api/adminlogin.json').then(res=>{
         if(res.data.data){
           this.$store.commit('userLogin',res.data.user);
         }else{
@@ -53,14 +65,16 @@ export default defineComponent({
     }
   },
   mounted() {
+    console.log(this.Axios);
     this.login();
+    //this.getMenuList();
   },
   computed: {//计算属性
       // ...mapState(['count','list']),
       ...mapState({
         menuColor: (state) => state.menuColor,
         menuStyle: (state) => state.menuStyle,
-        userLogin: (state) => state.userLogin
+        userLogin: (state) => state.User.userLogin
       }),
   },
 

@@ -1,5 +1,6 @@
 import {createStore} from "vuex";
 import storage from "@/utils/storage";
+import User from './modules/user';
 const store = createStore({
     state(){//数据
         return{
@@ -7,7 +8,6 @@ const store = createStore({
             msg:'nihao sdad'*/
             menuColor:storage.get("setmenu") && storage.get("setmenu").menucolor || 'dark', //主题色
             menuStyle:storage.get("setmenu") && storage.get("setmenu").menustyle || 'left', //导航样式
-            userLogin:storage.get("setuser") || {},//当前用户信息
         }
     },
     mutations:{//方法 异步操作建议放在actions里面
@@ -20,12 +20,6 @@ const store = createStore({
         setMsg(state,msg){
             state.msg=msg;
         }*/
-        userLogin(state,data){
-            state.userLogin = data ;
-            var user=storage.get("setuser") || {};
-            user=data;
-            storage.set("setuser",user);
-        },
         menuColor(state,data){
             state.menuColor = data ;
             var menuset=storage.get("setmenu") || {};
@@ -48,6 +42,7 @@ const store = createStore({
         }*/
     },
     actions:{//执行mutations里面的方法 主要用于异步
+
        /* incCount(context){
             context.commit('incCount');//执行mutations 里面的 incCount
         },
@@ -58,7 +53,7 @@ const store = createStore({
         }*/
     },
     modules:{//模块
-       // 'user':userStore
+        User
     }
 });
 export default store;
