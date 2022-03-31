@@ -3,7 +3,7 @@ import index from '../view/index.vue';
 import page1 from '../view/page1.vue'
 import page2 from '../view/page2.vue';
 import {start,done} from "@/utils/nprogress";
-
+/*默认跳到首页 去验证是否登陆 若有登陆页则跳到登陆页*/
 const routes=[
     {
         path:'/',

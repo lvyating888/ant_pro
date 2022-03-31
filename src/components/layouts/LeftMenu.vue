@@ -78,7 +78,8 @@ export default defineComponent({
     // ...mapState(['count','list']),
     ...mapState({
       menuColor:(state)=> state.menuColor,
-      menuStyle:(state)=>state.menuStyle
+      menuStyle:(state)=>state.menuStyle,
+      userMenu: (state) => state.User.userMenu,
     }),
   }
 

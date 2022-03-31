@@ -5,7 +5,9 @@
     <TopMenu v-if="menuStyle=='top'"></TopMenu>
     <LeftMenu v-if="menuStyle=='left'"></LeftMenu>
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0" />
+      <a-layout-header style="background: #fff; padding: 0" v-if="menuStyle=='left'">
+          <UserRight></UserRight>
+      </a-layout-header>
       <a-layout-content style="margin: 0 16px">
         <a-breadcrumb style="margin: 16px 0">
           <a-breadcrumb-item>User</a-breadcrumb-item>
@@ -26,13 +28,16 @@
 import SetDrawer from "@/components/layouts/SetDrawer";
 import LeftMenu from "@/components/layouts/LeftMenu.vue";
 import TopMenu from "@/components/layouts/TopMenu.vue";
+import UserRight from '@/components/layouts/UserRight.vue';
 import { defineComponent } from 'vue';
 import {mapState} from "vuex";
+import {Login, UserMenu} from '../api/user';
 export default defineComponent({
   components: {
     SetDrawer,
     LeftMenu,
-    TopMenu
+    TopMenu,
+    UserRight
   },
   data() {
     return {
@@ -41,20 +46,20 @@ export default defineComponent({
   methods:{
     /* 菜单*/
     getMenuList(){
-      this.Axios({
-        url: '/api/sys/role/menuList.json',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        method: 'post',
-        data: {
-          compId:this.userLogin.comp_id,
-          uid:this.userLogin.id
-        }
+      UserMenu({
+        compId:this.userLogin.comp_id,
+        uid:this.userLogin.id
       }).then(res=>{
-        console.log(res);
+        if(res){
+          this.$store.commit('userMenu',res);
+        }else{
+          this.$store.commit('userMenu', {});
+        }
       });
     },
+    /*登录*/
     login(){
-      this.Axios.get('/api/adminlogin.json').then(res=>{
+      Login({}).then(res=>{
         if(res.data.data){
           this.$store.commit('userLogin',res.data.user);
         }else{
@@ -65,16 +70,18 @@ export default defineComponent({
     }
   },
   mounted() {
-    console.log(this.Axios);
+    /*判断用户是否登陆*/
     this.login();
-    //this.getMenuList();
+    /*获取用户列表*/
+    this.getMenuList();
   },
   computed: {//计算属性
       // ...mapState(['count','list']),
       ...mapState({
         menuColor: (state) => state.menuColor,
         menuStyle: (state) => state.menuStyle,
-        userLogin: (state) => state.User.userLogin
+        userLogin: (state) => state.User.userLogin,
+        userMenu: (state) => state.User.userMenu,
       }),
   },
 
