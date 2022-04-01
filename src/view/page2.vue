@@ -9,7 +9,7 @@
     </a-row>
   </div>
 </template>
-<script lang="ts">
+<script >
 import {defineComponent} from "vue";
 import {
   BackwardOutlined,TeamOutlined
@@ -21,7 +21,7 @@ export default defineComponent({
   },
   data(){
     return{
-
+      list:{}
     }
   },
   mounted(){
@@ -29,7 +29,11 @@ export default defineComponent({
     //this.$route.query 获取get传值
     //js 跳转路由 this.$router.push({path:'...',query{id:1}})
     //name this.$router.push({name:'name',query{id:1}})
-    console.log(this.$route.params);
+    console.log(this.$route);
+    console.log(this.$route.query);
+    var data=this.$route.params
+    console.log('我再page2');
+    this.list.id=data.id
   }
 })
 </script>
