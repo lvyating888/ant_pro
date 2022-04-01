@@ -18,10 +18,13 @@ const routes=[
             },
             {
                 path: 'page1',
+                name:'page1',
                 component: page1
+
             },
             {
-                path: 'page2',
+                path: 'page2/',
+                name:'page2',
                 component: page2
             },
         ]
@@ -31,11 +34,11 @@ const routes=[
         name:'404',
         component:()=>import('../view/404.vue')
     },
-    {
+    /*{
         path: '/ces',
         name:'ces',
         component:()=>import('../view/ces.vue')
-    }
+    }*/
 ];
 
 const router = createRouter({
