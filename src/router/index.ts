@@ -34,11 +34,11 @@ const routes=[
         name:'404',
         component:()=>import('../view/404.vue')
     },
-    /*{
-        path: '/ces',
-        name:'ces',
-        component:()=>import('../view/ces.vue')
-    }*/
+    {
+        path: '/uploadimg',
+        name:'uploadimg',
+        component:()=>import('../view/upload.vue')
+    }
 ];
 
 const router = createRouter({

@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import axios from "./utils/request";
 
-import { Button,Menu,Layout,Breadcrumb,Drawer,Row,Col,Affix,Tooltip,Input,AutoComplete} from 'ant-design-vue';
+import { Button,Menu,Layout,Breadcrumb,Drawer,Row,Col,Affix,Tooltip,Input,AutoComplete,Upload} from 'ant-design-vue';
 
 import router from "@/router";
 import store from './vuex/store.js';
@@ -21,6 +21,7 @@ app.use(Affix);
 app.use(Tooltip);
 app.use(Input);
 app.use(AutoComplete);
+app.use(Upload);
 /*
 * Icon.setTwoToneColor('#eb2f96');
 Icon.getTwoToneColor(); // #eb2f96

@@ -23,7 +23,7 @@ export function UserMenu(parameter:any) {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        method: 'get',
+        method: 'post',
         //params 必须是一个无格式对象(plain object)或 URLSearchParams 对象
         params: parameter
         //data 是作为请求主体被发送的数据
