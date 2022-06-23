@@ -21,17 +21,23 @@ module.exports = defineConfig({
     },
   },
   devServer:{
-    host:'x.mp12345.com',
-    port:8888,
+    host:'x.twovs.com',
+    port:8889,
     proxy:{
-      '/api':{
-        target:'http://x.mp12345.com:8089',
+      '.json$':{
+        target:'https://www.twovs.com',
         changeOrigin:true
       },
-      '/supply':{
-        target:'http://x.mp12345.com:8089',
+      '/api':{
+        target:'http://cg.mp12345.com',
         changeOrigin:true
+      },
+      '//v0.api.upyun.com':{
+        target:'https://v0.api.upyun.com/',
+        changeOrigin:true,
+        secure: false,
       }
     }
   }
 })
+/*http://cg.mp12345.com https://www.twovs.com*/

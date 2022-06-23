@@ -38,6 +38,16 @@ const routes=[
         path: '/uploadimg',
         name:'uploadimg',
         component:()=>import('../view/upload.vue')
+    },
+    {
+        path: '/ag',
+        name:'ag',
+        component:()=>import('../view/ag.vue')
+    },
+    {
+        path: '/uploadimg_lis',
+        name:'uploadimg_lis',
+        component:()=>import('../view/upload_img.vue')
     }
 ];
 
