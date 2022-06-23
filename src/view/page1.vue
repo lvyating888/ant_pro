@@ -1,9 +1,10 @@
 <template>
   <div>
+
     <ul>
       <li v-for="(item, index) in list" :key="index">
         <button @click="ces(item)">
-          {{ item.item }}123
+          {{ item.item }}1231111
         </button>
       </li>
     </ul>
@@ -23,7 +24,7 @@ import {
 export default defineComponent({
   components:{
     BackwardOutlined,
-    TeamOutlined
+    TeamOutlined,
   },
   data(){
     return{
@@ -44,7 +45,7 @@ export default defineComponent({
       this.$router.push({
         path:'/page2',
         name:'page2',
-        params:{item:data.item,id:data.id}
+        query:{item:data.item,id:data.id}
       });
       console.log(data);
       console.log(123123232);

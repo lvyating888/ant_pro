@@ -9,6 +9,7 @@
           <UserRight></UserRight>
       </a-layout-header>
       <a-layout-content style="margin: 0 16px">
+        <a-button @click="cs()">提交</a-button>
         <a-breadcrumb style="margin: 16px 0">
           <a-breadcrumb-item>User</a-breadcrumb-item>
           <a-breadcrumb-item>Bill</a-breadcrumb-item>
@@ -32,6 +33,7 @@ import UserRight from '@/components/layouts/UserRight.vue';
 import { defineComponent } from 'vue';
 import {mapState} from "vuex";
 import {Login, UserMenu} from '../api/user';
+import axios from "@/utils/request";
 export default defineComponent({
   components: {
     SetDrawer,
@@ -45,6 +47,25 @@ export default defineComponent({
     };
   },
   methods:{
+    /*cs(){
+      axios({
+        method: 'POST',
+        headers: { 'content-type': 'application/x-www-form-urlencoded' },
+        url: '/onel/m/persist/goods.json',
+        //params 必须是一个无格式对象(plain object)或 URLSearchParams 对象
+        params:{
+          title:1,
+          description:1,
+          samll_imgurl:1,
+          weburl:1,
+          need_count:1
+        }
+        //data 是作为请求主体被发送的数据
+      }).then(res=>{
+        console.log(res);
+        console.log(122342342342423);
+      })
+    },*/
     /* 菜单*/
     getMenuList(){
       UserMenu({
@@ -65,16 +86,17 @@ export default defineComponent({
           this.$store.commit('userLogin',res.data.user);
         }else{
           this.$store.commit('userLogin', {});
-          window.location.href='http://c.mp12345.com';
+         // window.location.href='http://c.mp12345.com';
         }
       })
     }
   },
   mounted() {
+
     /*判断用户是否登陆*/
     this.login();
     /*获取用户列表*/
-    this.getMenuList();
+   /* this.getMenuList();*/
   },
   computed: {//计算属性
       // ...mapState(['count','list']),
